@@ -1,3 +1,5 @@
-requests
+python-telegram-bot==20.3
+schedule
 pandas
-sqlite3
+numpy
+email-validator
