@@ -30,4 +30,13 @@ if "modo" not in colunas:
 else:
     print("✅ A coluna 'modo' já existe.")
 
+# Adicionar coluna 'competicao' se não existir
+if "competicao" not in colunas:
+    print("🔧 Adicionando coluna 'competicao' na tabela 'sinais'...")
+    c.execute("ALTER TABLE sinais ADD COLUMN competicao TEXT;")
+    conn.commit()
+    print("✅ Coluna 'competicao' adicionada com sucesso!")
+else:
+    print("✅ A coluna 'competicao' já existe.")
+
 conn.close()
