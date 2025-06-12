@@ -1,1 +1,0 @@
-def buscar_jogos_hoje(): return []
