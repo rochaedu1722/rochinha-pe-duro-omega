@@ -12,31 +12,21 @@ c = conn.cursor()
 c.execute("PRAGMA table_info(sinais);")
 colunas = [col[1] for col in c.fetchall()]
 
-# Adicionar coluna 'data' se não existir
-if "data" not in colunas:
-    print("🔧 Adicionando coluna 'data' na tabela 'sinais'...")
-    c.execute("ALTER TABLE sinais ADD COLUMN data TEXT;")
-    conn.commit()
-    print("✅ Coluna 'data' adicionada com sucesso!")
-else:
-    print("✅ A coluna 'data' já existe.")
+# Adicionar colunas se não existirem
+novas_colunas = {
+    "data": "TEXT",
+    "modo": "TEXT",
+    "competicao": "TEXT",
+    "jogo": "TEXT"
+}
 
-# Adicionar coluna 'modo' se não existir
-if "modo" not in colunas:
-    print("🔧 Adicionando coluna 'modo' na tabela 'sinais'...")
-    c.execute("ALTER TABLE sinais ADD COLUMN modo TEXT;")
-    conn.commit()
-    print("✅ Coluna 'modo' adicionada com sucesso!")
-else:
-    print("✅ A coluna 'modo' já existe.")
-
-# Adicionar coluna 'competicao' se não existir
-if "competicao" not in colunas:
-    print("🔧 Adicionando coluna 'competicao' na tabela 'sinais'...")
-    c.execute("ALTER TABLE sinais ADD COLUMN competicao TEXT;")
-    conn.commit()
-    print("✅ Coluna 'competicao' adicionada com sucesso!")
-else:
-    print("✅ A coluna 'competicao' já existe.")
+for coluna, tipo in novas_colunas.items():
+    if coluna not in colunas:
+        print(f"🔧 Adicionando coluna '{coluna}' na tabela 'sinais'...")
+        c.execute(f"ALTER TABLE sinais ADD COLUMN {coluna} {tipo};")
+        conn.commit()
+        print(f"✅ Coluna '{coluna}' adicionada com sucesso!")
+    else:
+        print(f"✅ A coluna '{coluna}' já existe.")
 
 conn.close()
