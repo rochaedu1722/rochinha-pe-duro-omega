@@ -1,0 +1,1 @@
+def registrar_sinal(sinal): print('Registrando sinal...')

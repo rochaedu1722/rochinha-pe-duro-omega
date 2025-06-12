@@ -1,0 +1,1 @@
+def gerar_sinais_precision(jogos): return []

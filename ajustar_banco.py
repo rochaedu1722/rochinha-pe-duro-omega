@@ -1,0 +1,1 @@
+print('Banco ajustado')
